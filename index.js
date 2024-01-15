@@ -3,8 +3,10 @@ require("dotenv").config();
 const dbConnect = require("./config/database");
 const userRoutes = require("./routes/user");
 const app = express();
-var cors = require("cors");
 const PORT = process.env.PORT || 4000;
+
+const cors = require('cors');
+
 
 app.use(
   cors({
@@ -14,7 +16,12 @@ app.use(
 // Middleware
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send(`<h1>Backend is Running and this is '/' Route</h1>`);
+});
+
 app.use("/api/v1", userRoutes);
+
 
 // CORS Configuration
 app.listen(PORT, () => {
@@ -23,6 +30,4 @@ app.listen(PORT, () => {
 
 dbConnect();
 
-app.get("/", (req, res) => {
-  res.send(`<h1>Backend is Running and this is '/' Route</h1>`);
-});
+
