@@ -5,9 +5,9 @@ const mongoose = require("mongoose");
 require("dotenv");
 
 // Defining a function to connect to the database
-const dbConnect = () => {
+const dbConnect = async() => {
 	// Connecting to the database using the provided URL from the environment variables
-	mongoose
+	const db = await mongoose
 		.connect(process.env.DATABASE_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
